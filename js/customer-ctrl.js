@@ -267,8 +267,20 @@ function addCustomersToTable(){
     }
 }
 
-function toggleBackwardForwardDisability(){
-    
+function toggleBackwardForwardDisability(page){
+    /*first page -> no backward button*/
+    if (page == 1){
+        document.querySelector("#btn-backward").classList.add("disabled");
+    } else {
+        document.querySelector("#btn-backward").classList.remove("disabled");
+    }
+
+    /*last page -> no forward button*/
+    if( page == pageCount){
+        document.querySelector("#btn-forward").classList.add("disabled");
+    } else {
+        document.querySelector("#btn-forward").classList.remove("disabled");
+    }
 }
 
 function clearSelection(){
@@ -295,14 +307,18 @@ function handleSelection(){
     });
 }
 
-function handleDelete(){
+function handleDelete(event){
     if (confirm("Are you sure to delete this customer?")){
-        tblCustomers.deleteRow(event.target.parentElement.parentElement.rowIndex);
-        showOrHideTFoot();
 
         customers.splice(customers.findIndex(function (c){
             return c.id === event.target.parentElement.parentElement.cells[0].innerText;
         }), 1);
+
+        var activePage = document.querySelector(".pagination .active").innerText;
+        initPagination();
+        renderPage(activePage ? activePage : 1);
+        showOrHideTFoot();
+
         event.stopPropagation();
     }
 }
@@ -352,5 +368,17 @@ function validate(){
         txtId.select();
         validated = false;
     }
+
+    if (customers.findIndex(function (c){
+        return c.id === txtId.value
+    }) !== -1){
+        alert("Duplicate customer Ids are not allowed");
+        txtId.classList.add('is-invalid');
+        document.getElementById('helper-txt-id').classList.remove('text-muted');
+        document.getElementById('helper-txt-id').classList.add('invalid-feedback');
+        txtId.select();
+        validated = false;
+    }
+
     return validated;
 }
