@@ -56,9 +56,12 @@ header {
 main {
   margin-top: 50px;
 
-  .row > div:first-child {
-    border-right: 1px solid lightgray;
+  @media all and (min-width: 992px) {
+    .row > div:first-child {
+      border-right: 1px solid lightgray;
+    }
   }
+
 
   h3 {
     padding: 10px;
@@ -66,6 +69,14 @@ main {
     text-align: center;
     margin-bottom: 20px;
     background-color: rgb(251, 181, 52);
+  }
+
+  #tbl-wrapper{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 
   #tbl-customers {
@@ -116,6 +127,10 @@ main {
 
 .selected{
   background-color: #a4cde4 !important;
+}
+
+.hidden{
+  visibility: hidden !important;
 }
 
 /*===============================================================================
