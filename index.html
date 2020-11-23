@@ -24,26 +24,33 @@
                 <div class="form-group">
                     <label for="txt-id">Customer ID</label>
                     <input class="form-control" id="txt-id" placeholder="Eg. C001" type="text">
-                    <small class="form-text text-muted">
+                    <small class="form-text text-muted" id="helper-txt-id">
                         The Customer ID should follow the pattern CXXX; X={0-9}
                     </small>
                 </div>
                 <div class="form-group">
                     <label for="txt-name">Customer Name</label>
                     <input class="form-control" id="txt-name" placeholder="Eg. Lucky Prabath" type="text">
+                    <small class="form-text invalid-feedback"  >
+                        The name can contain only A-Z, a-z, . & spaces.
+                    </small>
                 </div>
                 <div class="form-group">
                     <label for="txt-address">Customer Address</label>
                     <input class="form-control" id="txt-address" placeholder="Eg. #1234, Main St, Gampaha" type="text">
+                    <small class="form-text invalid-feedback" >
+                        Address can't be empty, should have at least characters.
+                    </small>
                 </div>
                 <hr>
                 <div class="form-group">
-                    <button class="btn btn-primary" id="btn-save">Save</button>
+                    <button class="btn btn-primary" id="btn-save" type="button">Save</button>
                     <button class="btn btn-danger" id="btn-clear" type="reset">Clear</button>
                 </div>
             </form>
         </div>
         <div class="col-12 col-lg-8 d-flex flex-column align-items-center">
+            <div id="tbl-wrapper">
             <table class="table table-hover table-bordered table-striped" id="tbl-customers">
                 <thead>
                 <tr>
@@ -54,6 +61,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
                 <tfoot>
                 <tr>
@@ -63,18 +71,19 @@
                 </tr>
                 </tfoot>
             </table>
-            <nav>
+            </div>
+            <nav class="hidden" id="pagination">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#">
+                    <li class="page-item" id="btn-backward">
+                        <a class="page-link" href="#"
+                        onclick="document.querySelector('.pagination li:nth-child(2) a').click();">
                             <i class="fas fa-backward"></i>
                         </a>
                     </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
+                    <li class="page-item "><a class="page-link" href="#" onclick="navigatePage(event)">1</a></li>
+                    <li class="page-item" id="btn-forward">
+                        <a class="page-link"
+                           href="#" onclick="document.querySelector('.pagination li:nth-last-child(2) a').click();">
                             <i class="fas fa-forward"></i>
                         </a>
                     </li>

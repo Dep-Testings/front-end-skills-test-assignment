@@ -31,8 +31,13 @@
 
 html {
   font-size: 14px;
+  height: 100%;
 }
 
+body{
+  min-height: 100%;
+  position: relative;
+}
 /*===============================================================================
  * Header
  *===============================================================================*/
@@ -73,21 +78,44 @@ main {
       }
     }
 
+    tbody tr{
+      cursor: pointer;
+    }
+
     td {
       vertical-align: middle;
     }
 
-    th:first-child {
+
+    th:first-child,
+    td:first-child{
       width: 75px;
       text-align: center;
     }
 
-    th:last-child {
+    th:last-child,
+    td:last-child{
       position: relative;
       width: 75px;
       text-align: center;
     }
   }
+}
+
+.trash{
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url('../img/trash.png');
+  background-size: contain;
+
+  &:hover{
+    background-image: url("../img/trash-hover.png");
+  }
+}
+
+.selected{
+  background-color: #a4cde4 !important;
 }
 
 /*===============================================================================
