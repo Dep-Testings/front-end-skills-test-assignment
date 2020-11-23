@@ -248,6 +248,29 @@ function clearTable(){
     }
 }
 
+function addCustomersToTable(){
+    if( endIndex > customers.length){
+        endIndex = customers.length;
+    }
+
+    for (var i = startIndex; i < endIndex; i++) {
+
+        /*append new row*/
+        var row = tblCustomers.tBodies.item(0).insertRow(-1);
+        row.onclick = handleSelection;
+
+        /*add table data*/
+        row.insertCell(0).innerText = customers[i].id;
+        row.insertCell(1).innerText = customers[i].name;
+        row.insertCell(2).innerText = customers[i].address;
+        row.insertCell(3).innerHTML = '<div class="trash" onclick="handleDelete(event)"></div>';
+    }
+}
+
+function toggleBackwardForwardDisability(){
+    
+}
+
 function clearSelection(){
     var rows = document.querySelectorAll("#tbl-customers tbody tr");
     for (var i = 0; i < rows.length; i++) {
